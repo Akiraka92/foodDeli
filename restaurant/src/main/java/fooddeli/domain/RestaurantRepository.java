@@ -9,4 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
     path = "restaurants"
 )
 public interface RestaurantRepository
-    extends PagingAndSortingRepository<Restaurant, Long> {}
+    extends PagingAndSortingRepository<Restaurant, Long> {
+        java.util.Optional<Restaurant> findByOrderId(Long id);
+    }

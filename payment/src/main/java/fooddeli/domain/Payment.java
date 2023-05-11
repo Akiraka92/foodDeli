@@ -40,94 +40,54 @@ public class Payment {
     }
 
     public static void createPaymentInfo(OrderPlaced orderPlaced) {
-        /** Example 1:  new item 
+
         Payment payment = new Payment();
+        payment.setOrderId(orderPlaced.getOrderId());
+        payment.setUserId(orderPlaced.getUserNo());
+        payment.setStatus("ORDER_PLACED");
         repository().save(payment);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderPlaced.get???()).ifPresent(payment->{
-            
-            payment // do something
-            repository().save(payment);
-
-
-         });
-        */
 
     }
 
     public static void makePayment(PaymentDone paymentDone) {
-        /** Example 1:  new item 
-        Payment payment = new Payment();
-        repository().save(payment);
 
-        PaymentCompleted paymentCompleted = new PaymentCompleted(payment);
-        paymentCompleted.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(paymentDone.get???()).ifPresent(payment->{
+        repository().findByOrderId(paymentDone.getOrderId()).ifPresent(payment->{
             
-            payment // do something
+            payment.setStatus("PAYMENT_DONE");
             repository().save(payment);
 
             PaymentCompleted paymentCompleted = new PaymentCompleted(payment);
             paymentCompleted.publishAfterCommit();
 
          });
-        */
 
     }
 
     public static void cancelPayment(OrderCancelled orderCancelled) {
-        /** Example 1:  new item 
-        Payment payment = new Payment();
-        repository().save(payment);
 
-        PaymentCancelled paymentCancelled = new PaymentCancelled(payment);
-        paymentCancelled.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCancelled.get???()).ifPresent(payment->{
+        repository().findById(orderCancelled.getOrderId()).ifPresent(payment->{
             
-            payment // do something
+            payment.setStatus("ORDER_CANCELLED");
             repository().save(payment);
 
             PaymentCancelled paymentCancelled = new PaymentCancelled(payment);
             paymentCancelled.publishAfterCommit();
 
          });
-        */
 
     }
 
     public static void cancelPayment(OrderDenied orderDenied) {
-        /** Example 1:  new item 
-        Payment payment = new Payment();
-        repository().save(payment);
-
-        PaymentCancelled paymentCancelled = new PaymentCancelled(payment);
-        paymentCancelled.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(orderDenied.get???()).ifPresent(payment->{
+        repository().findById(orderDenied.getOrderId()).ifPresent(payment->{
             
-            payment // do something
+            payment.setStatus("ORDER_DENIED");
             repository().save(payment);
 
             PaymentCancelled paymentCancelled = new PaymentCancelled(payment);
             paymentCancelled.publishAfterCommit();
 
          });
-        */
 
     }
 }

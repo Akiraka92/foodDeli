@@ -36,6 +36,7 @@ public class PolicyHandler {
 
         // Sample Logic //
         Order.notifyOrderStatus(event);
+        System.out.println("#####\n\n");
     }
 
     @StreamListener(
@@ -52,6 +53,7 @@ public class PolicyHandler {
 
         // Sample Logic //
         Order.notifyOrderStatus(event);
+        System.out.println("#####\n\n");
     }
 
     @StreamListener(
@@ -68,6 +70,7 @@ public class PolicyHandler {
 
         // Sample Logic //
         Order.notifyOrderStatus(event);
+        System.out.println("#####\n\n");
     }
 
     @StreamListener(
@@ -86,6 +89,7 @@ public class PolicyHandler {
 
         // Sample Logic //
         Order.notifyOrderStatus(event);
+        System.out.println("#####\n\n");
     }
 
     @StreamListener(
@@ -104,6 +108,7 @@ public class PolicyHandler {
 
         // Sample Logic //
         Order.notifyOrderStatus(event);
+        System.out.println("#####\n\n");
     }
 
     @StreamListener(
@@ -120,5 +125,6 @@ public class PolicyHandler {
 
         // Sample Logic //
         Order.notifyPickup(event);
+        System.out.println("#####\n\n");
     }
 }

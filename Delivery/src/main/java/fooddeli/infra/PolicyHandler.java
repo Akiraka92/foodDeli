@@ -33,9 +33,12 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener CreateDelivery : " + foodReadied + "\n\n"
         );
-
-        // Sample Logic //
-        Delivery.createDelivery(event);
+        
+        if ("FOOD_READIED".equals(foodReadied.getStatus())) {
+            Delivery.createDelivery(event);
+            System.out.println("##### Done\n\n");
+        }
+        
     }
 
     @StreamListener(
@@ -50,7 +53,9 @@ public class PolicyHandler {
             "\n\n##### listener UpdateDelivery : " + orderCompleted + "\n\n"
         );
 
-        // Sample Logic //
-        Delivery.updateDelivery(event);
+        if ("ORDER_COMPLETED".equals(orderCompleted.getStatus())) {
+            Delivery.updateDelivery(event);
+            System.out.println("##### Done\n\n");
+        }
     }
 }

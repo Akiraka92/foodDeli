@@ -33,9 +33,10 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener CreatePaymentInfo : " + orderPlaced + "\n\n"
         );
-
         // Sample Logic //
         Payment.createPaymentInfo(event);
+        
+        System.out.println("#####\n\n");
     }
 
     @StreamListener(
@@ -50,8 +51,10 @@ public class PolicyHandler {
             "\n\n##### listener MakePayment : " + paymentDone + "\n\n"
         );
 
-        // Sample Logic //
-        Payment.makePayment(event);
+        if ("PAYMENT_DONE".equals(paymentDone.getStatus())) {
+            Payment.makePayment(event);
+            System.out.println("##### Done\n\n");
+        }
     }
 
     @StreamListener(
@@ -66,8 +69,10 @@ public class PolicyHandler {
             "\n\n##### listener CancelPayment : " + orderCancelled + "\n\n"
         );
 
-        // Sample Logic //
-        Payment.cancelPayment(event);
+        if ("ORDER_CANCELLED".equals(orderCancelled.getStatus())) {
+            Payment.cancelPayment(event);
+            System.out.println("##### Done\n\n");
+        }
     }
 
     @StreamListener(
@@ -82,7 +87,9 @@ public class PolicyHandler {
             "\n\n##### listener CancelPayment : " + orderDenied + "\n\n"
         );
 
-        // Sample Logic //
-        Payment.cancelPayment(event);
+        if ("ORDER_DENIED".equals(orderDenied.getStatus())) {
+            Payment.cancelPayment(event);
+            System.out.println("##### Done\n\n");
+        }
     }
 }

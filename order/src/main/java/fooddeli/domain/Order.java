@@ -62,122 +62,67 @@ public class Order {
     }
 
     public static void notifyOrderStatus(OrderConfirmed orderConfirmed) {
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
-
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(orderConfirmed.get???()).ifPresent(order->{
+        repository().findById(orderConfirmed.getOrderId()).ifPresent(order->{
             
-            order // do something
+            order.setStatus(orderConfirmed.getStatus());
             repository().save(order);
 
 
          });
-        */
 
     }
 
     public static void notifyOrderStatus(DeliveryStarted deliveryStarted) {
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(deliveryStarted.get???()).ifPresent(order->{
-            
-            order // do something
+        repository().findById(deliveryStarted.getOrderId()).ifPresent(order->{
+    
+            order.setStatus(deliveryStarted.getStatus());
             repository().save(order);
 
-
          });
-        */
 
     }
 
     public static void notifyOrderStatus(CookStarted cookStarted) {
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(cookStarted.get???()).ifPresent(order->{
+        repository().findById(cookStarted.getOrderId()).ifPresent(order->{
             
-            order // do something
+            order.setStatus(cookStarted.getStatus());
             repository().save(order);
 
 
          });
-        */
 
     }
 
     public static void notifyOrderStatus(PaymentCancelled paymentCancelled) {
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(paymentCancelled.get???()).ifPresent(order->{
+        repository().findById(paymentCancelled.getOrderId()).ifPresent(order->{
             
-            order // do something
+            order.setStatus(paymentCancelled.getStatus());
             repository().save(order);
 
 
          });
-        */
 
     }
 
     public static void notifyOrderStatus(PaymentCompleted paymentCompleted) {
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(paymentCompleted.get???()).ifPresent(order->{
+        repository().findById(paymentCompleted.getOrderId()).ifPresent(order->{
             
-            order // do something
+            order.setStatus(paymentCompleted.getStatus());
             repository().save(order);
 
 
          });
-        */
 
     }
 
     public static void notifyPickup(DeliveryStarted deliveryStarted) {
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(deliveryStarted.get???()).ifPresent(order->{
-            
-            order // do something
-            repository().save(order);
-
-
-         });
-        */
+        System.out.println("\n\n\nDELIVERY START!\n\n\n");
 
     }
 }

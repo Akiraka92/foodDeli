@@ -43,42 +43,25 @@ public class Delivery {
     }
 
     public static void createDelivery(FoodReadied foodReadied) {
-        /** Example 1:  new item 
         Delivery delivery = new Delivery();
+        delivery.setOrderId(foodReadied.getOrderId());
+        delivery.setRestaurantNo(foodReadied.getRestaurantNo());
+        delivery.setUserNo(foodReadied.getUserNo());
+        delivery.setAdress(foodReadied.getAdress());
+        delivery.setStatus("FOOD_READIED");
         repository().save(delivery);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(foodReadied.get???()).ifPresent(delivery->{
-            
-            delivery // do something
-            repository().save(delivery);
-
-
-         });
-        */
 
     }
 
     public static void updateDelivery(OrderCompleted orderCompleted) {
-        /** Example 1:  new item 
-        Delivery delivery = new Delivery();
-        repository().save(delivery);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCompleted.get???()).ifPresent(delivery->{
+        repository().findByOrderId(orderCompleted.getOrderId()).ifPresent(delivery->{
             
-            delivery // do something
-            repository().save(delivery);
-
-
+            if ("DELIVERY_STARTED".equals(delivery.getStatus())) {
+                delivery.setStatus("ORDER_COMPLETED");
+                repository().save(delivery);
+            }
          });
-        */
 
     }
 }

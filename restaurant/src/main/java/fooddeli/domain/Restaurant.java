@@ -63,86 +63,56 @@ public class Restaurant {
     }
 
     public static void createOrder(OrderPlaced orderPlaced) {
-        /** Example 1:  new item 
+
         Restaurant restaurant = new Restaurant();
+        restaurant.setOrderId(orderPlaced.getOrderId());
+        restaurant.setRestaurantNo(orderPlaced.getRestaurantNo());
+        restaurant.setUserNo(orderPlaced.getUserNo());
+        restaurant.setMenu(orderPlaced.getMenu());
+        restaurant.setAmount(orderPlaced.getAmount());
+        restaurant.setAdress(orderPlaced.getAdress());
+        restaurant.setStatus("ORDER_PLACED");
         repository().save(restaurant);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderPlaced.get???()).ifPresent(restaurant->{
-            
-            restaurant // do something
-            repository().save(restaurant);
-
-
-         });
-        */
 
     }
 
     public static void updateOrder(OrderCompleted orderCompleted) {
-        /** Example 1:  new item 
-        Restaurant restaurant = new Restaurant();
-        repository().save(restaurant);
 
-        */
+        repository().findByOrderId(orderCompleted.getOrderId()).ifPresent(restaurant->{
 
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCompleted.get???()).ifPresent(restaurant->{
-            
-            restaurant // do something
+            restaurant.setStatus("ORDER_COMPLETED");
             repository().save(restaurant);
 
-
          });
-        */
 
     }
 
     public static void updateOrder(PaymentCompleted paymentCompleted) {
-        /** Example 1:  new item 
-        Restaurant restaurant = new Restaurant();
-        repository().save(restaurant);
-
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(paymentCompleted.get???()).ifPresent(restaurant->{
+        repository().findByOrderId(paymentCompleted.getOrderId()).ifPresent(restaurant->{
             
-            restaurant // do something
+            restaurant.setStatus("PAYMENT_DONE");
             repository().save(restaurant);
 
-
          });
-        */
-
     }
 
     public static void cancelOrder(CancelationRequested cancelationRequested) {
-        /** Example 1:  new item 
-        Restaurant restaurant = new Restaurant();
-        repository().save(restaurant);
 
-        OrderCancelled orderCancelled = new OrderCancelled(restaurant);
-        orderCancelled.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(cancelationRequested.get???()).ifPresent(restaurant->{
+        repository().findByOrderId(cancelationRequested.getOrderId()).ifPresent(restaurant->{
             
-            restaurant // do something
-            repository().save(restaurant);
+            if (restaurant.getStatus() != null){
+                switch (restaurant.getStatus()) {
+                    case "ORDER_PLACED" :
+                    case "PAYMENT_DONE" :
+                    case "ORDER_CONFIRMED" :
+                        restaurant.setStatus("ORDER_CANCELLED");
+                        repository().save(restaurant);
 
-            OrderCancelled orderCancelled = new OrderCancelled(restaurant);
-            orderCancelled.publishAfterCommit();
-
+                        OrderCancelled orderCancelled = new OrderCancelled(restaurant);
+                        orderCancelled.publishAfterCommit();
+                }
+            }
          });
-        */
-
     }
 }
